@@ -14,13 +14,25 @@ public class PlayerMovement : MonoBehaviour
     public Transform aimTargetLeft;
     public Transform aimTargetRight;
 
+    public Transform ball;
+    public Transform serveTargetPlayerSide;
+    private float serveForce = 4.0f;
+
+    public GameObject wallBehind;
 
     private float fwdDelta = 0.0f;
-    private float force = 3.8f;    
+    private float shotForce = 3.8f;    
 
     private float actualDistance;
 
     private ShotManager shotManager;
+
+    void Serve()
+    {
+        Debug.Log("Serving");
+        Vector3 dir = serveTargetPlayerSide.position - transform.position;
+        ball.GetComponent<Rigidbody>().velocity = dir.normalized * serveForce + new Vector3(0.0f, 3.0f, 0.0f);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
         //don't render aimTargets
         aimTargetLeft.gameObject.GetComponent<Renderer>().enabled = false; 
         aimTargetRight.gameObject.GetComponent<Renderer>().enabled = false;
+        serveTargetPlayerSide.gameObject.GetComponent<Renderer>().enabled = false;
+
+        wallBehind.GetComponent<Renderer>().enabled = false;
 
         playerRb = GetComponent<Rigidbody>();
         Vector3 toObjectVector = transform.position - Camera.main.transform.position;
@@ -40,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         {
             actualDistance = zDistance;
         }
+
+        Serve();
 
         shotManager = GetComponent<ShotManager>();
     }
@@ -72,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetRight.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetRight.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.3f, 0.0f);
             }
             else //hit on right part of racket -> ball goes to the left
             {
@@ -80,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetLeft.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.3f, 0.0f);
 
             }
             
