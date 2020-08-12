@@ -16,7 +16,12 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform ball;
     public Transform serveTargetPlayerSide;
+
+
+    
+
     private float serveForce = 4.0f;
+
 
     public GameObject wallBehind;
 
@@ -24,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private float shotForce = 3.8f;    
 
     private float actualDistance;
+
+    
 
     private ShotManager shotManager;
 
@@ -103,4 +110,6 @@ public class PlayerMovement : MonoBehaviour
             
         }
     }
+
+    
 }

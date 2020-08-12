@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
-    public Rigidbody rb;
 
-    public float longSideSpeed; //speed on z-axis
+
+    //public float longSideSpeed; //to set speed on z-axis
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

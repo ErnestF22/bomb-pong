@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-   
+    
     public Transform ball;
     public Transform aimTargetLeft; //left ref. to camera (player) position
     public Transform aimTargetRight;
     public Transform aimTargetCenter;
 
-    
 
     private float speed = 10.0f;
     private float force = 3.8f;
     private Vector3 targetPosition;
     private float shootingDir;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +26,9 @@ public class Bot : MonoBehaviour
         aimTargetCenter.gameObject.GetComponent<Renderer>().enabled = false;
 
         
-
         targetPosition = transform.position;
+
+        
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class Bot : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ball"))
         {
@@ -76,4 +76,6 @@ public class Bot : MonoBehaviour
             
         }
     }
+
 }
+
