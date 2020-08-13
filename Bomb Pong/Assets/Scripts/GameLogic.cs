@@ -64,6 +64,11 @@ public class GameLogic : MonoBehaviour
 
             NewRally();
         }
+
+        if (playerScore>4.5f || opponentScore>4.5f)
+        {
+            EndGame();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -151,6 +156,17 @@ public class GameLogic : MonoBehaviour
         countdown = 10;
 
         SceneManager.LoadScene(initScene.name);
-        
+    }
+
+    void EndGame()
+    {
+        countdown = 10;
+        playerScore = 0;
+        opponentScore = 0;
+
+        tableTouches = 0;
+
+        SceneManager.LoadScene("End Scene");
+
     }
 }
