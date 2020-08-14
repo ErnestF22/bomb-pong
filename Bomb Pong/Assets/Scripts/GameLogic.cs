@@ -37,9 +37,8 @@ public class GameLogic : MonoBehaviour
     {
         initScene = SceneManager.GetActiveScene();
         tableTouches = 0;
-        countdown = 10;
-        countdownTxt.text = countdown.ToString();
-
+        countdown = (float) PlayerPrefs.GetInt("countdown");
+        countdownTxt.text = ShowCountdown();
 
         ballInitTransf = transform;
         bombInitTransf = bomb.transform;
@@ -55,7 +54,7 @@ public class GameLogic : MonoBehaviour
         opponentScoreTxt.text = opponentScore.ToString();
 
         countdown -= Time.deltaTime;
-        countdownTxt.text = (Mathf.FloorToInt(countdown)).ToString();
+        countdownTxt.text = ShowCountdown();
         if (countdown<0.0f)
         {
             Debug.Log("BOOM!");
@@ -160,13 +159,18 @@ public class GameLogic : MonoBehaviour
 
     void EndGame()
     {
-        countdown = 10;
+        countdown = (float) PlayerPrefs.GetInt("countdown");
         playerScore = 0;
         opponentScore = 0;
 
         tableTouches = 0;
+        SceneManager.LoadScene("EndScene");
+    }
 
-        SceneManager.LoadScene("End Scene");
-
+    string ShowCountdown()
+    {
+        int floorCtd = Mathf.FloorToInt(countdown);
+        int counter = Mathf.Max(floorCtd, 0);
+        return counter.ToString();
     }
 }
