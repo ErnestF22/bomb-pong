@@ -16,13 +16,20 @@ public class BallBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
         //rb.velocity = new Vector3(0, 0, -longSideSpeed);
-        
+
+
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Table"))
+            SoundManager.PlaySound("table_hit");
 
     }
 }

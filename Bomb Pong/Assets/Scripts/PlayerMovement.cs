@@ -90,6 +90,9 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Ball"))
         {
             Debug.Log("Player hit the ball!");
+            
+            SoundManager.PlaySound("paddle_hit");
+
             Vector3 contactRelPosition = other.transform.position-playerRb.position;
             if (contactRelPosition.x <= 0.0f) //hit on left part of racket -> ball goes to the right
             {

@@ -48,6 +48,8 @@ public class Bot : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
+            SoundManager.PlaySound("paddle_hit");
+
             shootingDir = Random.Range(0.0f, 10.0f);
             if (shootingDir<4.0f)
             {

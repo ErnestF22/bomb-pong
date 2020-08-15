@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public enum Player
 {
@@ -59,6 +60,7 @@ public class GameLogic : MonoBehaviour
         if (countdown<0.0f)
         {
             Debug.Log("BOOM!");
+            SoundManager.PlaySound("bomb_explosion");
             winsPoint = Player.Human;
             AssignPoint(winsPoint);
 
@@ -79,9 +81,9 @@ public class GameLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.CompareTag("Out") || other.CompareTag("Wall"))
         {
+            SoundManager.PlaySound("bomb_explosion");
             if (tableTouches == 0)
             {
                 if (lastTouchedBall == Player.Ai)
@@ -161,8 +163,11 @@ public class GameLogic : MonoBehaviour
         tableTouches = 0;
         countdown = 10;
 
+        //TODO: 'Serve Carefully' screen (with text that says who won the point)
+
         SceneManager.LoadScene(initScene.name);
     }
+
 
     void EndGame()
     {
