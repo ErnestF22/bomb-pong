@@ -28,6 +28,7 @@ public class GameLogic : MonoBehaviour
     private static int opponentScore = 0;
     private Player winsPoint;
     private Player lastTouchedBall;
+    private Player winsGame;
     private int tableTouches;
 
 
@@ -64,8 +65,14 @@ public class GameLogic : MonoBehaviour
             NewRally();
         }
 
-        if (playerScore>4.5f || opponentScore>4.5f)
+        if (playerScore>4.5f)
         {
+            winsGame = Player.Human;
+            EndGame();
+        }
+        else if (opponentScore > 4.5f)
+        {
+            winsGame = Player.Ai;
             EndGame();
         }
     }
@@ -159,11 +166,20 @@ public class GameLogic : MonoBehaviour
 
     void EndGame()
     {
+        if (winsGame == Player.Human)
+            PlayerPrefs.SetString("winnerTxt", "YOU WIN!");
+        else if (winsGame == Player.Ai)
+            PlayerPrefs.SetString("winnerTxt", "YOU LOSE!");
+        else
+            Debug.Log("ERROR: Unknown Winner");
+
         countdown = (float) PlayerPrefs.GetInt("countdown");
         playerScore = 0;
         opponentScore = 0;
 
         tableTouches = 0;
+        
+        
         SceneManager.LoadScene("EndScene");
     }
 

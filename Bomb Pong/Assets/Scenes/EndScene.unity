@@ -575,6 +575,7 @@ GameObject:
   - component: {fileID: 1745929146}
   - component: {fileID: 1745929148}
   - component: {fileID: 1745929147}
+  - component: {fileID: 1745929149}
   m_Layer: 5
   m_Name: Winner
   m_TagString: Untagged
@@ -632,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU WIN!
+  m_Text: 'Winner is: ...'
 --- !u!222 &1745929148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -641,6 +642,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745929145}
   m_CullTransparentMesh: 0
+--- !u!114 &1745929149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745929145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b74fdb10be02c44b4ce9334eaebb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1755349227
 GameObject:
   m_ObjectHideFlags: 0
