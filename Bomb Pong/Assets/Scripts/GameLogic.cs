@@ -6,7 +6,8 @@ using System.Collections;
 public enum Player
 {
     Human, // =0
-    Ai // =1
+    Ai, // =1
+    None //=2
 }
 
 public class GameLogic : MonoBehaviour
@@ -20,7 +21,12 @@ public class GameLogic : MonoBehaviour
 
     public GameObject bomb;
 
-    private Scene initScene;
+    public GameObject serveCarefullyBtn;
+    public GameObject pointWinnerPanel;
+    public Text pointWinnerTxt;
+    private string winnerString;
+
+    public static Scene initScene;
 
 
     private Transform ballInitTransf;
@@ -38,6 +44,7 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
         initScene = SceneManager.GetActiveScene();
+        
         tableTouches = 0;
         countdown = (float) PlayerPrefs.GetInt("countdown");
         countdownTxt.text = ShowCountdown();
@@ -46,6 +53,8 @@ public class GameLogic : MonoBehaviour
         bombInitTransf = bomb.transform;
 
         lastTouchedBall = Player.Human;
+
+        winsGame = Player.None;
 
     }
 
@@ -57,17 +66,8 @@ public class GameLogic : MonoBehaviour
 
         countdown -= Time.deltaTime;
         countdownTxt.text = ShowCountdown();
-        if (countdown<0.0f)
-        {
-            Debug.Log("BOOM!");
-            SoundManager.PlaySound("bomb_explosion");
-            winsPoint = Player.Human;
-            AssignPoint(winsPoint);
 
-            NewRally();
-        }
-
-        if (playerScore>4.5f)
+        if (playerScore > 4.5f)
         {
             winsGame = Player.Human;
             EndGame();
@@ -77,6 +77,20 @@ public class GameLogic : MonoBehaviour
             winsGame = Player.Ai;
             EndGame();
         }
+
+        if (countdown<0.0f)
+        {
+            Debug.Log("BOOM!");
+            SoundManager.PlaySound("bomb_explosion");
+            winsPoint = Player.Human;
+            AssignPoint(winsPoint);
+
+            winnerString = "Computer Blown Up!";
+
+            NewRally();
+        }
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,11 +104,14 @@ public class GameLogic : MonoBehaviour
                 {
                     Debug.Log("AI OUT! Point for Human");
                     winsPoint = Player.Human;
+                    winnerString = "OUT!";
                 }
                 else
                 {
                     Debug.Log("Human OUT! Point for AI");
                     winsPoint = Player.Ai;
+                    winnerString = "OUT!";
+
                 }
 
                 AssignPoint(winsPoint);
@@ -106,10 +123,12 @@ public class GameLogic : MonoBehaviour
                 if (lastTouchedBall == Player.Ai)
                 {
                     Debug.Log("Player missed! Point for AI");
+                    winnerString = "You missed!";
                 }
                 else
                 {
                     Debug.Log("AI missed! Point for Player");
+                    winnerString = "Computer missed!";
                 }
                 winsPoint = lastTouchedBall;
                 AssignPoint(winsPoint);
@@ -140,6 +159,7 @@ public class GameLogic : MonoBehaviour
             {
                 winsPoint = lastTouchedBall;
                 AssignPoint(winsPoint);
+                winnerString = "You missed!";
                 NewRally();
             }
         }
@@ -159,15 +179,26 @@ public class GameLogic : MonoBehaviour
 
     public void NewRally() //reset to initial positions
     {
-        Debug.Log("Starting New Rally!");
         tableTouches = 0;
         countdown = 10;
+        if (playerScore > 4.5f || opponentScore > 4.5f)
+            return;
 
-        //TODO: 'Serve Carefully' screen (with text that says who won the point)
 
-        SceneManager.LoadScene(initScene.name);
+        Debug.Log("Starting New Rally!");
+        //Setup 'Serve Carefully' screen (with text that says who won the point)
+        pointWinnerTxt.text = winnerString;
+        SetupServeCarefully();
+
+        
     }
 
+    void SetupServeCarefully()
+    {
+        gameObject.SetActive(false);
+        serveCarefullyBtn.SetActive(true);
+        pointWinnerPanel.SetActive(true);
+    }
 
     void EndGame()
     {

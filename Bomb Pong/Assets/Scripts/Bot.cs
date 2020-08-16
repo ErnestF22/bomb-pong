@@ -27,8 +27,6 @@ public class Bot : MonoBehaviour
 
         
         targetPosition = transform.position;
-
-        
     }
 
     // Update is called once per frame
