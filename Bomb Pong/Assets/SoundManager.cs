@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(string clip)
     {
-        Debug.Log("Playing some sound");
+        //Debug.Log("Playing some sound");
         switch (clip)
         {            
             case "bomb_explosion":

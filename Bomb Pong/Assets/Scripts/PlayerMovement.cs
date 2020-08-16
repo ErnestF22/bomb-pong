@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject wallBehind;
 
-    private float fwdDelta = 0.0f;
-    private float shotForce = 3.8f;    
+    //private float fwdDelta = 0.0f;
+    private float shotForce = 3.7f;    
 
     private float actualDistance;
 
@@ -74,14 +74,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = actualDistance;
 
-        if (Input.GetKey(KeyCode.W))
-            fwdDelta += 0.05f;
-        else if (Input.GetKey(KeyCode.S))
-            fwdDelta -= 0.05f;
+        //if (Input.GetKey(KeyCode.W))
+        //    fwdDelta += 0.05f;
+        //else if (Input.GetKey(KeyCode.S))
+        //    fwdDelta -= 0.05f;
 
-        mousePosition.z += fwdDelta;
+        //mousePosition.z += fwdDelta;
 
         transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+        //transform.rotation
 
     }
 
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetRight.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetRight.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.0f, 0.0f);
             }
             else //hit on right part of racket -> ball goes to the left
             {
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetLeft.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.0f, 0.0f);
 
             }
             

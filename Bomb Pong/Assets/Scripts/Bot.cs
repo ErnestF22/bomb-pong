@@ -12,10 +12,11 @@ public class Bot : MonoBehaviour
     public Transform aimTargetCenter;
 
 
-    private float speed = 10.0f;
+    private float speed = 4.0f;
     private float force = 3.8f;
     private Vector3 targetPosition;
     private float shootingDir;
+    //private float distanceFromBall;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //distanceFromBall = (ball.position - gameObject.transform.position).magnitude;
         Move();
     }
 
@@ -55,7 +57,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Opponent targeting LEFT");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
             }
             else if (shootingDir>=4.0f && shootingDir<=6.0f)
             {
@@ -63,7 +65,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetCenter.position - transform.position;
                 Debug.Log("Opponent targeting CENTER");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
             }
             else
             {
@@ -71,7 +73,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetRight.position - transform.position;
                 Debug.Log("Opponent targeting RIGHT");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.3f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
             }
             
         }

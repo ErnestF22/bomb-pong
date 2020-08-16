@@ -29,15 +29,17 @@ public class GameLogic : MonoBehaviour
     public static Scene initScene;
 
 
+    private int maxScore = 5;
     private Transform ballInitTransf;
     private Transform bombInitTransf;
+    private bool isServing;
     private static int playerScore = 0;
     private static int opponentScore = 0;
     private Player winsPoint;
     private Player lastTouchedBall;
     private Player winsGame;
     private int tableTouches;
-
+    
 
 
     // Start is called before the first frame update
@@ -54,8 +56,11 @@ public class GameLogic : MonoBehaviour
 
         lastTouchedBall = Player.Human;
 
-        winsGame = Player.None;
+        isServing = true;
+        Serve();
 
+        winsPoint = Player.None;
+        winsGame = Player.None;
     }
 
     // Update is called once per frame
@@ -67,12 +72,12 @@ public class GameLogic : MonoBehaviour
         countdown -= Time.deltaTime;
         countdownTxt.text = ShowCountdown();
 
-        if (playerScore > 4.5f)
+        if (playerScore > maxScore-0.5f)
         {
             winsGame = Player.Human;
             EndGame();
         }
-        else if (opponentScore > 4.5f)
+        else if (opponentScore > maxScore-0.5f)
         {
             winsGame = Player.Ai;
             EndGame();
@@ -81,21 +86,31 @@ public class GameLogic : MonoBehaviour
         if (countdown<0.0f)
         {
             Debug.Log("BOOM!");
-            SoundManager.PlaySound("bomb_explosion");
-            winsPoint = Player.Human;
-            AssignPoint(winsPoint);
 
-            winnerString = "Computer Blown Up!";
+            //check on which side of the table the ball has blown up
+            if (gameObject.transform.position.z >= 0.0f)
+            {
+                SoundManager.PlaySound("bomb_explosion");
+                winsPoint = Player.Human;
+                AssignPoint(winsPoint);
+                winnerString = "Computer Blew Up!";
+            }
+            else
+            {
+                SoundManager.PlaySound("bomb_explosion");
+                winsPoint = Player.Ai;
+                AssignPoint(winsPoint);
+                winnerString = "You Blew Up!";
+            }
 
             NewRally();
         }
 
-        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Out") || other.CompareTag("Wall"))
+        if (collision.collider.CompareTag("Out") || collision.collider.CompareTag("Wall"))
         {
             SoundManager.PlaySound("bomb_explosion");
             if (tableTouches == 0)
@@ -111,15 +126,14 @@ public class GameLogic : MonoBehaviour
                     Debug.Log("Human OUT! Point for AI");
                     winsPoint = Player.Ai;
                     winnerString = "OUT!";
-
                 }
-
                 AssignPoint(winsPoint);
 
                 NewRally();
             }
             if (tableTouches >= 1)
             {
+                SoundManager.PlaySound("bomb_explosion");
                 if (lastTouchedBall == Player.Ai)
                 {
                     Debug.Log("Player missed! Point for AI");
@@ -135,11 +149,42 @@ public class GameLogic : MonoBehaviour
 
                 NewRally();
             }
-            
         }
 
+
+        if (collision.collider.CompareTag("Table"))
+        {
+            Debug.Log("TableTouches++");
+            tableTouches++;
+            if (tableTouches >= 2)
+            {
+                SoundManager.PlaySound("bomb_explosion");
+                winsPoint = lastTouchedBall;
+                AssignPoint(winsPoint);
+                if (winsPoint==Player.Ai)
+                    winnerString = "You missed!";
+                else if (winsPoint==Player.Human)
+                    winnerString = "Great curve!";
+                NewRally();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.CompareTag("Player"))
         {
+            if (tableTouches == 0 && lastTouchedBall == Player.Ai)
+            {
+                SoundManager.PlaySound("bomb_explosion");
+                winsPoint = Player.Ai;
+                AssignPoint(winsPoint);
+                winnerString = "Bomb has to hit ground";
+                NewRally();
+                return;
+            }
+                
+            Debug.Log("Resetting Table Touches");
             lastTouchedBall = Player.Human;
             tableTouches = 0;
             return;
@@ -147,21 +192,19 @@ public class GameLogic : MonoBehaviour
 
         if (other.CompareTag("Opponent"))
         {
+            if (tableTouches == 0 && lastTouchedBall == Player.Human)
+            {
+                SoundManager.PlaySound("bomb_explosion");
+                winsPoint = Player.Human;
+                AssignPoint(winsPoint);
+                winnerString = "Bomb has to hit ground first!";
+                NewRally();
+                return;
+            }
+            Debug.Log("Resetting Table Touches");
             lastTouchedBall = Player.Ai;
             tableTouches = 0;
             return;
-        }
-
-        if (other.CompareTag("Table"))
-        {
-            tableTouches++;
-            if (tableTouches >= 2)
-            {
-                winsPoint = lastTouchedBall;
-                AssignPoint(winsPoint);
-                winnerString = "You missed!";
-                NewRally();
-            }
         }
     }
 
@@ -181,7 +224,7 @@ public class GameLogic : MonoBehaviour
     {
         tableTouches = 0;
         countdown = 10;
-        if (playerScore > 4.5f || opponentScore > 4.5f)
+        if (playerScore > maxScore-0.5f || opponentScore > maxScore - 0.5f)
             return;
 
 
@@ -200,6 +243,11 @@ public class GameLogic : MonoBehaviour
         pointWinnerPanel.SetActive(true);
     }
 
+    void Serve()
+    {
+
+    }
+
     void EndGame()
     {
         if (winsGame == Player.Human)
@@ -214,8 +262,7 @@ public class GameLogic : MonoBehaviour
         opponentScore = 0;
 
         tableTouches = 0;
-        
-        
+                
         SceneManager.LoadScene("EndScene");
     }
 

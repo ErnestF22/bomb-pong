@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 390049101}
   - component: {fileID: 390049100}
   m_Layer: 0
-  m_Name: Leg (1)
+  m_Name: Leg Close Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -719,7 +719,6 @@ GameObject:
   - component: {fileID: 408464817}
   - component: {fileID: 408464820}
   - component: {fileID: 408464819}
-  - component: {fileID: 408464818}
   m_Layer: 0
   m_Name: Aim Target Opponent Right
   m_TagString: Untagged
@@ -741,20 +740,6 @@ Transform:
   m_Father: {fileID: 492925077}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &408464818
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408464816}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &408464819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -842,7 +827,6 @@ GameObject:
   - component: {fileID: 472242176}
   - component: {fileID: 472242179}
   - component: {fileID: 472242178}
-  - component: {fileID: 472242177}
   m_Layer: 0
   m_Name: Net
   m_TagString: Untagged
@@ -864,19 +848,6 @@ Transform:
   m_Father: {fileID: 2025270257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &472242177
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472242175}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &472242178
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1191,7 +1162,6 @@ GameObject:
   - component: {fileID: 539554216}
   - component: {fileID: 539554215}
   - component: {fileID: 539554214}
-  - component: {fileID: 539554213}
   m_Layer: 0
   m_Name: Aim Target Left
   m_TagString: Untagged
@@ -1199,20 +1169,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &539554213
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539554212}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &539554214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1286,7 +1242,7 @@ GameObject:
   - component: {fileID: 569437100}
   m_Layer: 0
   m_Name: Opponent
-  m_TagString: Untagged
+  m_TagString: Opponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1302,8 +1258,8 @@ Rigidbody:
   m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1334,8 +1290,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23, y: 0.34, z: 0.14}
-  m_Center: {x: 0, y: -0.11, z: -1.51}
+  m_Size: {x: 0.2, y: 0.2, z: 0.05}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!4 &569437102
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,7 +1300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569437098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 3}
+  m_LocalPosition: {x: 0, y: 0.8, z: 1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 658858831}
@@ -1378,7 +1334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658858830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: -0.205, z: -1.514}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 0.1, y: 0.08314891, z: 0.054856997}
   m_Children: []
   m_Father: {fileID: 569437102}
@@ -1539,7 +1495,7 @@ GameObject:
   - component: {fileID: 913689773}
   - component: {fileID: 913689772}
   m_Layer: 0
-  m_Name: Leg (2)
+  m_Name: Leg Far Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1892,7 +1848,7 @@ GameObject:
   - component: {fileID: 1050264963}
   m_Layer: 0
   m_Name: Racket
-  m_TagString: Opponent
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1905,8 +1861,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050264961}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.05, z: -1.5}
-  m_LocalScale: {x: 0.2, y: 0, z: 0.2}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalScale: {x: 0.19752312, y: 0.01703362, z: 0.17834148}
   m_Children: []
   m_Father: {fileID: 569437102}
   m_RootOrder: 1
@@ -2149,7 +2105,6 @@ GameObject:
   - component: {fileID: 1122249019}
   - component: {fileID: 1122249022}
   - component: {fileID: 1122249021}
-  - component: {fileID: 1122249020}
   m_Layer: 0
   m_Name: Net Post Right
   m_TagString: Untagged
@@ -2171,20 +2126,6 @@ Transform:
   m_Father: {fileID: 2025270257}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1122249020
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122249018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1122249021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2350,7 +2291,6 @@ GameObject:
   - component: {fileID: 1321618692}
   - component: {fileID: 1321618691}
   - component: {fileID: 1321618690}
-  - component: {fileID: 1321618689}
   m_Layer: 0
   m_Name: Aim Target Opponent Left
   m_TagString: Untagged
@@ -2358,20 +2298,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1321618689
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321618688}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1321618690
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2626,7 +2552,7 @@ GameObject:
   - component: {fileID: 1540493609}
   - component: {fileID: 1540493608}
   m_Layer: 0
-  m_Name: Leg (3)
+  m_Name: Leg Far Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2807,7 +2733,6 @@ GameObject:
   - component: {fileID: 1577827344}
   - component: {fileID: 1577827347}
   - component: {fileID: 1577827346}
-  - component: {fileID: 1577827345}
   m_Layer: 0
   m_Name: Aim Target Right
   m_TagString: Untagged
@@ -2829,20 +2754,6 @@ Transform:
   m_Father: {fileID: 1155059095}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1577827345
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577827343}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1577827346
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2912,7 +2823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617762005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1876260291}
@@ -2935,7 +2846,7 @@ GameObject:
   - component: {fileID: 1638532931}
   m_Layer: 0
   m_Name: Racket
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3010,7 +2921,6 @@ GameObject:
   - component: {fileID: 1654846585}
   - component: {fileID: 1654846588}
   - component: {fileID: 1654846587}
-  - component: {fileID: 1654846586}
   m_Layer: 0
   m_Name: Aim Target Opponent Center
   m_TagString: Untagged
@@ -3032,20 +2942,6 @@ Transform:
   m_Father: {fileID: 492925077}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1654846586
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654846584}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1654846587
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3102,7 +2998,6 @@ GameObject:
   - component: {fileID: 1659870288}
   - component: {fileID: 1659870291}
   - component: {fileID: 1659870290}
-  - component: {fileID: 1659870289}
   m_Layer: 0
   m_Name: Net Post Left
   m_TagString: Untagged
@@ -3124,20 +3019,6 @@ Transform:
   m_Father: {fileID: 2025270257}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1659870289
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659870287}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1659870290
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3275,7 +3156,7 @@ GameObject:
   - component: {fileID: 1780907656}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3342,7 +3223,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -3410,7 +3291,6 @@ GameObject:
   - component: {fileID: 1835471681}
   - component: {fileID: 1835471684}
   - component: {fileID: 1835471683}
-  - component: {fileID: 1835471682}
   m_Layer: 0
   m_Name: Player Side Target
   m_TagString: Untagged
@@ -3432,20 +3312,6 @@ Transform:
   m_Father: {fileID: 430044564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1835471682
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835471680}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1835471683
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3702,7 +3568,7 @@ GameObject:
   - component: {fileID: 1929032679}
   - component: {fileID: 1929032678}
   m_Layer: 0
-  m_Name: Leg
+  m_Name: Leg Close Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4035,7 +3901,6 @@ GameObject:
   - component: {fileID: 2026240391}
   - component: {fileID: 2026240394}
   - component: {fileID: 2026240393}
-  - component: {fileID: 2026240392}
   m_Layer: 0
   m_Name: Net Edge
   m_TagString: Untagged
@@ -4057,19 +3922,6 @@ Transform:
   m_Father: {fileID: 2025270257}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &2026240392
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026240390}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2026240393
 MeshRenderer:
   m_ObjectHideFlags: 0
