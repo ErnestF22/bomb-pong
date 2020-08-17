@@ -3209,7 +3209,6 @@ MonoBehaviour:
   aimTargetLeft: {fileID: 539554216}
   aimTargetRight: {fileID: 1577827344}
   ball: {fileID: 1972301338}
-  serveTargetPlayerSide: {fileID: 1835471681}
   wallBehind: {fileID: 833617775}
 --- !u!54 &1780907655
 Rigidbody:
@@ -3782,6 +3781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a0cc066f6cd064aa00ba3ce3566c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  opponent: {fileID: 0}
   countdown: 10
   playerScoreTxt: {fileID: 354159988}
   opponentScoreTxt: {fileID: 529382951}
@@ -3791,6 +3792,7 @@ MonoBehaviour:
   serveCarefullyBtn: {fileID: 2039298201}
   pointWinnerPanel: {fileID: 115308821}
   pointWinnerTxt: {fileID: 1665878628}
+  serveTargetPlayerSide: {fileID: 1835471681}
 --- !u!1 &2025270253
 GameObject:
   m_ObjectHideFlags: 0

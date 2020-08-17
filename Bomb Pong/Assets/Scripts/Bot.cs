@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-    
+
     public Transform ball;
     public Transform aimTargetLeft; //left ref. to camera (player) position
     public Transform aimTargetRight;
@@ -26,7 +26,7 @@ public class Bot : MonoBehaviour
         aimTargetRight.gameObject.GetComponent<Renderer>().enabled = false;
         aimTargetCenter.gameObject.GetComponent<Renderer>().enabled = false;
 
-        
+
         targetPosition = transform.position;
     }
 
@@ -51,21 +51,21 @@ public class Bot : MonoBehaviour
             SoundManager.PlaySound("paddle_hit");
 
             shootingDir = Random.Range(0.0f, 10.0f);
-            if (shootingDir<4.0f)
+            if (shootingDir < 4.0f)
             {
                 //shoot to the left of the player
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Opponent targeting LEFT");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.2f, 0.0f);
             }
-            else if (shootingDir>=4.0f && shootingDir<=6.0f)
+            else if (shootingDir >= 4.0f && shootingDir <= 6.0f)
             {
                 //shoot to the center of the table
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetCenter.position - transform.position;
                 Debug.Log("Opponent targeting CENTER");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.2f, 0.0f);
             }
             else
             {
@@ -75,9 +75,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent targeting RIGHT");
                 other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
             }
-            
         }
     }
-
 }
 
