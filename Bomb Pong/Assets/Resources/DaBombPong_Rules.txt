@@ -8,6 +8,8 @@ Hit the bomb on the right side to make it go left and viceversa.
 Watch the bomb timer. If it runs out a bomb will be blown up.
 Try to blow it up at opponent side not yours.
 
+First to 5 points wins!
+
 If you want more fun choose fast mode.
 
 Click on this window to close it.

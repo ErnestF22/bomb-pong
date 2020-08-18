@@ -22,10 +22,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject wallBehind;
 
     //private float fwdDelta = 0.0f;
-    private float shotForce = 3.7f;    
+    private float shotForce = 4.6f;    
 
     private float actualDistance;
-  
+    private float initY;
 
     private ShotManager shotManager;
 
@@ -37,9 +37,10 @@ public class PlayerMovement : MonoBehaviour
         //don't render aimTargets
         aimTargetLeft.gameObject.GetComponent<Renderer>().enabled = false; 
         aimTargetRight.gameObject.GetComponent<Renderer>().enabled = false;
-        
+
         //wallBehind.GetComponent<Renderer>().enabled = false;
 
+        initY = gameObject.transform.position.y;
         playerRb = GetComponent<Rigidbody>();
         Vector3 toObjectVector = transform.position - Camera.main.transform.position;
         Vector3 linearDistanceVector = Vector3.Project(toObjectVector, Camera.main.transform.forward);
@@ -79,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Player hit the ball!");
             
-            SoundManager.PlaySound("paddle_hit");
+            
 
             Vector3 contactRelPosition = other.transform.position-playerRb.position;
             if (contactRelPosition.x <= 0.0f) //hit on left part of racket -> ball goes to the right
@@ -87,7 +88,12 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetRight.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetRight.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.0f-(0.09f*(PlayerPrefs.GetInt("countdown")-GameLogic.countdown)), 0.0f);
+                //other.GetComponent<Rigidbody>().velocity = dir.normalized * (shotForce - (0.03f * (PlayerPrefs.GetInt("countdown") - GameLogic.countdown))) 
+                //    + new Vector3(0.0f, 2.5f-(0.1f*(PlayerPrefs.GetInt("countdown")-GameLogic.countdown)), 0.0f);
+                float deltaHeight = 3.0f - Mathf.Max(0.15f, initY - transform.position.y) - (0.025f * ((PlayerPrefs.GetInt("countdown") - GameLogic.countdown) > 15.0f ? -3.4f : PlayerPrefs.GetInt("countdown") - GameLogic.countdown));
+                if (PlayerPrefs.GetInt("countdown") - GameLogic.countdown > 15.0f)
+                    shotForce += 0.25f;
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, deltaHeight, 0.0f);
             }
             else //hit on right part of racket -> ball goes to the left
             {
@@ -95,7 +101,12 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Collision position " + contactRelPosition.ToString("F8"));
                 //Debug.Log("aimTarget.position " + aimTargetLeft.position);
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.0f -(0.09f*(PlayerPrefs.GetInt("countdown") - GameLogic.countdown)), 0.0f);
+                //other.GetComponent<Rigidbody>().velocity = dir.normalized * (shotForce - (0.03f * (PlayerPrefs.GetInt("countdown") - GameLogic.countdown))) 
+                //    + new Vector3(0.0f, 2.5f -(0.1f*(PlayerPrefs.GetInt("countdown") - GameLogic.countdown)), 0.0f);
+                float deltaHeight = 3.0f - Mathf.Max(0.15f, initY - transform.position.y) - (0.025f * ((PlayerPrefs.GetInt("countdown") - GameLogic.countdown) > 15.0f ? -3.4f : PlayerPrefs.GetInt("countdown") - GameLogic.countdown));
+                if (PlayerPrefs.GetInt("countdown") - GameLogic.countdown > 15.0f)
+                    shotForce += 0.25f;
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, deltaHeight, 0.0f);
 
             }
             

@@ -734,7 +734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408464816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6, z: -1.25}
+  m_LocalPosition: {x: 0.5, y: 0.6, z: -1.3}
   m_LocalScale: {x: 0.2, y: 0.07, z: 0.2}
   m_Children: []
   m_Father: {fileID: 492925077}
@@ -1222,7 +1222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539554212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.6, z: 1.25}
+  m_LocalPosition: {x: -0.5, y: 0.6, z: 1.3}
   m_LocalScale: {x: 0.2, y: 0.07, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1155059095}
@@ -2351,7 +2351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321618688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.6, z: -1.25}
+  m_LocalPosition: {x: -0.5, y: 0.6, z: -1.3}
   m_LocalScale: {x: 0.2, y: 0.07, z: 0.2}
   m_Children: []
   m_Father: {fileID: 492925077}
@@ -2748,7 +2748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577827343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6, z: 1.25}
+  m_LocalPosition: {x: 0.5, y: 0.6, z: 1.3}
   m_LocalScale: {x: 0.2, y: 0.07, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1155059095}
@@ -2936,7 +2936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654846584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: -1.25}
+  m_LocalPosition: {x: 0, y: 0.6, z: -1.3}
   m_LocalScale: {x: 0.2, y: 0.07, z: 0.2}
   m_Children: []
   m_Father: {fileID: 492925077}
@@ -3169,7 +3169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780907651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: -1.5}
+  m_LocalPosition: {x: 0, y: 0.8, z: -1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1913417992}
@@ -3783,7 +3783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   opponent: {fileID: 0}
-  countdown: 10
   playerScoreTxt: {fileID: 354159988}
   opponentScoreTxt: {fileID: 529382951}
   countdownTxt: {fileID: 1841089975}
@@ -3793,6 +3792,7 @@ MonoBehaviour:
   pointWinnerPanel: {fileID: 115308821}
   pointWinnerTxt: {fileID: 1665878628}
   serveTargetPlayerSide: {fileID: 1835471681}
+  maxScore: 5
 --- !u!1 &2025270253
 GameObject:
   m_ObjectHideFlags: 0

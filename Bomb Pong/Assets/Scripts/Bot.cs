@@ -12,8 +12,8 @@ public class Bot : MonoBehaviour
     public Transform aimTargetCenter;
 
 
-    private float speed = 4.0f;
-    private float force = 3.8f;
+    private float speed;
+    private float shotForce = 4.5f;
     private Vector3 targetPosition;
     private float shootingDir;
     //private float distanceFromBall;
@@ -28,6 +28,7 @@ public class Bot : MonoBehaviour
 
 
         targetPosition = transform.position;
+        SetBotSpeed();
     }
 
     // Update is called once per frame
@@ -48,8 +49,6 @@ public class Bot : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            SoundManager.PlaySound("paddle_hit");
-
             shootingDir = Random.Range(0.0f, 10.0f);
             if (shootingDir < 4.0f)
             {
@@ -57,7 +56,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetLeft.position - transform.position;
                 Debug.Log("Opponent targeting LEFT");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.2f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.2f, 0.0f);
             }
             else if (shootingDir >= 4.0f && shootingDir <= 6.0f)
             {
@@ -65,7 +64,7 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetCenter.position - transform.position;
                 Debug.Log("Opponent targeting CENTER");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.2f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.2f, 0.0f);
             }
             else
             {
@@ -73,9 +72,22 @@ public class Bot : MonoBehaviour
                 Debug.Log("Opponent hit the ball!");
                 Vector3 dir = aimTargetRight.position - transform.position;
                 Debug.Log("Opponent targeting RIGHT");
-                other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0.0f, 3.0f, 0.0f);
+                other.GetComponent<Rigidbody>().velocity = dir.normalized * shotForce + new Vector3(0.0f, 3.2f, 0.0f);
             }
         }
+    }
+
+    void SetBotSpeed ()
+    {
+        int ctd = PlayerPrefs.GetInt("countdown");
+        if (ctd == 25)
+            speed = 1.25f;
+        else if (ctd == 15)
+            speed = 1.3f;
+        else if (ctd == 10)
+            speed = 1.35f;
+        else
+            Debug.LogWarning("Unknown Bot Speed");
     }
 }
 

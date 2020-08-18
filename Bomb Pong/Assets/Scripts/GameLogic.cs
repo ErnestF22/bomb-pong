@@ -38,7 +38,7 @@ public class GameLogic : MonoBehaviour
 
 
 
-    private float serveForce = 6.0f;
+    private float serveForce = 5.5f;
 
     private Transform ballInitTransf;
     private Transform bombInitTransf;
@@ -271,8 +271,9 @@ public class GameLogic : MonoBehaviour
     {
         if (isServing)
         {
-            if (other.CompareTag("Opponent"))
+            if (other.CompareTag("Opponent")) //Note that the player is the one who always serves 
             {
+                SoundManager.PlaySound("paddle_hit");
                 isServing = false;
                 if (tableTouches <= 1)
                 {
@@ -295,6 +296,7 @@ public class GameLogic : MonoBehaviour
             {
                 if (tableTouches == 0 && lastTouchedBall == Player.Ai)
                 {
+                    SoundManager.PlaySound("paddle_hit");
                     SoundManager.PlaySound("bomb_explosion");
                     winsPoint = Player.Ai;
                     AssignPoint(winsPoint);
@@ -304,15 +306,15 @@ public class GameLogic : MonoBehaviour
                 }
                 else if (tableTouches == 0 && lastTouchedBall == Player.Human)
                 {
-                    SoundManager.PlaySound("bomb_explosion");
-                    winsPoint = Player.Ai;
-                    AssignPoint(winsPoint);
-                    winnerString = "Don't hit twice!";
-                    NewRally();
+                    //SoundManager.PlaySound("bomb_explosion");
+                    //winsPoint = Player.Ai;
+                    //AssignPoint(winsPoint);
+                    //winnerString = "Don't hit twice!";
+                    //NewRally();
                     return;
                 }
 
-
+                SoundManager.PlaySound("paddle_hit");
                 Debug.Log("Resetting Table Touches");
                 lastTouchedBall = Player.Human;
                 tableTouches = 0;
@@ -323,6 +325,7 @@ public class GameLogic : MonoBehaviour
             {
                 if (tableTouches == 0 && lastTouchedBall == Player.Human)
                 {
+                    SoundManager.PlaySound("paddle_hit");
                     SoundManager.PlaySound("bomb_explosion");
                     winsPoint = Player.Human;
                     AssignPoint(winsPoint);
@@ -332,14 +335,15 @@ public class GameLogic : MonoBehaviour
                 }
                 else if (tableTouches == 0 && lastTouchedBall == Player.Ai)
                 {
-                    SoundManager.PlaySound("bomb_explosion");
-                    winsPoint = Player.Human;
-                    AssignPoint(winsPoint);
-                    winnerString = "Don't hit twice!";
-                    NewRally();
+                    //SoundManager.PlaySound("bomb_explosion");
+                    //winsPoint = Player.Human;
+                    //AssignPoint(winsPoint);
+                    //winnerString = "Don't hit twice!";
+                    //NewRally();
                     return;
                 }
 
+                SoundManager.PlaySound("paddle_hit");
                 Debug.Log("Resetting Table Touches");
                 lastTouchedBall = Player.Ai;
                 tableTouches = 0;
@@ -413,8 +417,19 @@ public class GameLogic : MonoBehaviour
 
     string ShowCountdown()
     {
-        int floorCtd = Mathf.FloorToInt(countdown);
-        int counter = Mathf.Max(floorCtd, 0);
-        return counter.ToString();
+        if (countdown > 5.0f)
+        {
+            int floorCtd = Mathf.FloorToInt(countdown);
+            int counter = Mathf.Max(floorCtd, 0);
+            return counter.ToString();
+        }
+        else
+        {
+            //format countdown
+            float fmtCountdown = (float)Mathf.Round(countdown * 100f) / 100f;
+            fmtCountdown = Mathf.Max(0.0f, fmtCountdown);
+            return fmtCountdown.ToString();
+        }
+        
     }
 }
